@@ -168,29 +168,6 @@ def friday():
                     speak(joke)
                     import time
                     time.sleep(1)
-                    
-                
-                elif 'send' and 'message' in query:
-                    speak("What is the message ?")
-                    msg = takeCommand().lower()
-                    speak("Gotcha, and Whom should i send the message ?")
-                    query = takeCommand().lower()
-                    
-                    if query == 'deep':
-                        speak("Okay. Sending message to " +query)
-                        h = int(datetime.datetime.now().strftime("%H"))
-                        m = int(datetime.datetime.now().strftime("%M"))
-                        pywhatkit.sendwhatmsg("+917984802271",msg,h,m+2)
-                        time.sleep(10)
-                    else:
-                        speak("i guess i am mispelling the name. Would you please type the correct name ? ")
-                        query = input("Type the name of contact : ")
-                        speak("Thank you. Sending message to " +query)
-                        h = int(datetime.datetime.now().strftime("%H"))
-                        m = int(datetime.datetime.now().strftime("%M"))
-                        pywhatkit.sendwhatmsg("+917984802271",msg,h,m+2)
-                        time.sleep(10)
-
 
                 elif 'search' in query and 'google' in query:
                     speak("Okay, What do you want me to search ?")
@@ -223,7 +200,7 @@ def friday():
 
                 elif 'news' in query:
                     try:
-                        jsonObj = urlopen('''https://newsapi.org/v1/articles?source=the-times-of-india&sortBy=top&apiKey=cb51ecc5c9b1406891e9f923a93e99b2''')
+                        jsonObj = urlopen('''https://newsapi.org/v1/articles?source=the-times-of-india&sortBy=top&apiKey=YOUR_API_KEY''')
                         data = json.load(jsonObj)
                         ind = 1
                         
@@ -242,7 +219,7 @@ def friday():
 
 
                 elif 'weather' in query:
-                        api_key = "c268a56df8c5ddedda5cd70eb33eb405"
+                        api_key = "YOUR_API_KEY"
                         city = 'Pune'
                         loc = city.title()
 
@@ -254,7 +231,7 @@ def friday():
                         speak(f"Wind - {data.json().get('wind')['speed']} km per hour")
 
                 elif "what is" in query or "who is" in query or "calculate" in query or "how much" in query :
-                    appId = 'AGPU9X-3GPJEQERXQ'
+                    appId = 'API_ID'
                     client = wolframalpha.Client(appId)
                     query = query.lower()
                     res = client.query(query)
